@@ -7,6 +7,7 @@
     "test": "mocha --require test/setup.js",
     "dev": "nodemon src/server.js",
     "migrate": "postgrator --config postgrator-config.js",
+    "migrate:test": "cross-env NODE_ENV=test npm run migrate",
     "start": "node src/server.js",
     "predeploy": "npm audit",
     "deploy": "git push heroku master"
@@ -26,6 +27,7 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
+    "cross-env": "^7.0.2",
     "mocha": "^8.2.1",
     "nodemon": "^2.0.6",
     "postgrator-cli": "^3.2.0",
