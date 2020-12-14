@@ -23,18 +23,13 @@ foldersRouter
   })
   .post(jsonParser, (req, res, next) => {
     const { title } = req.body;
-    const newFolder = { title };
-
-    for (const [key, value] of Object.entries(newFolder)) {
-      if (value == null) {
-        return res.status(400).json({
-          error: { message: `Missing '${key}' in request body` },
-        });
-      }
+    if (title == null) {
+      return res.status(400).json({
+        error: { message: `Missing 'title' in request body` },
+      });
     }
 
-    // newUser.nickname = nickname;
-    // newUser.password = password;
+    const newFolder = { title };
 
     FoldersService.insertFolder(req.app.get("db"), newFolder)
       .then((folder) => {
